@@ -1,0 +1,17 @@
+# models
+*.joblib
+
+# datasets
+*.csv
+*.tsv
+*.zip
+*.data
+data/
+datasets/
+
+# python
+__pycache__/
+*.pyc
+
+# jupyter
+.ipynb_checkpoints/
