@@ -49,4 +49,18 @@ stack: python 3.11, scikit-learn, seaborn, pandas
 
 ---
 
+## module 2 — malware image classifier
+
+ResNet50 CNN fine-tuned on the malimg dataset. 96.69% accuracy on blind eval.
+
+pipeline: malware binary → byteplot image → resize 75x75 → normalize → ResNet50 (frozen) → custom fc head → train
+
+25 malware families. pre-trained imagenet weights used. only final layer trained.
+
+the red teaming angle: adversarial image perturbations can fool CNNs. tiny pixel changes invisible to humans can flip classification. that's the foundation for evasion attacks covered in later modules.
+
+stack: python 3.11, pytorch, torchvision, pillow
+
+---
+
 took ai help to clean up typos. my brain works faster than my fingers. xd

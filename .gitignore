@@ -1,5 +1,6 @@
 # models
 *.joblib
+*.pth
 
 # datasets
 *.csv
@@ -9,6 +10,8 @@
 *.txt
 data/
 datasets/
+malimg_paper_dataset_imgs/
+newdata/
 
 # python
 __pycache__/
