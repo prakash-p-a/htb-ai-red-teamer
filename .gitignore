@@ -6,6 +6,7 @@
 *.tsv
 *.zip
 *.data
+*.txt
 data/
 datasets/
 

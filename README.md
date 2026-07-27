@@ -35,4 +35,18 @@ stack: python 3.11, scikit-learn, nltk, pandas
 
 ---
 
+## module 2 — network anomaly detection
+
+random forest classifier on NSL-KDD dataset. ~99.76% accuracy on blind eval.
+
+pipeline: raw network logs → binary + multiclass targets → one-hot encode → numeric features → train
+
+5 classes: normal, DoS, probe, privilege escalation, access attacks
+
+the red teaming angle: model scores 99%+ on DoS and probe but only catches 24% of privilege escalation attacks. class imbalance = blind spot. an attacker who knows this targets buffer_overflow and rootkit techniques specifically.
+
+stack: python 3.11, scikit-learn, seaborn, pandas
+
+---
+
 took ai help to clean up typos. my brain works faster than my fingers. xd
