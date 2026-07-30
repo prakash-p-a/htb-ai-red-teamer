@@ -9,6 +9,7 @@
 *.data
 *.txt
 *.json
+!requirements.txt
 data/
 datasets/
 malimg_paper_dataset_imgs/

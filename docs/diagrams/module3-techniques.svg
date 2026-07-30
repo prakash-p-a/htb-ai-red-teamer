@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 190" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif">
+  <style>
+    .bg { fill: #ffffff; }
+    .card { fill: #fff8f0; stroke: #9a6700; stroke-width: 2; }
+    .bar { fill: #9a6700; }
+    .id { fill: #ffffff; font-size: 11px; font-weight: 700; text-anchor: middle; }
+    .lbl { fill: #0d1117; font-size: 13px; font-weight: 700; text-anchor: middle; }
+    .sub { fill: #57606a; font-size: 10.5px; text-anchor: middle; }
+    .title { fill: #0d1117; font-size: 16px; font-weight: 700; }
+    @media (prefers-color-scheme: dark) {
+      .bg { fill: #0d1117; }
+      .card { fill: #161b22; stroke: #d29922; }
+      .bar { fill: #d29922; }
+      .id { fill: #0d1117; }
+      .lbl { fill: #e6edf3; }
+      .sub { fill: #8b949e; }
+      .title { fill: #e6edf3; }
+    }
+  </style>
+  <rect class="bg" x="0" y="0" width="980" height="190" />
+  <text class="title" x="20" y="26">module 3 — techniques covered (independent labs, not a chain)</text>
+
+  <!-- card 1: ML01 input manipulation -->
+  <g>
+    <rect class="card" x="20" y="50" width="220" height="120" rx="10" />
+    <rect class="bar" x="20" y="50" width="220" height="26" rx="10" />
+    <rect class="bar" x="20" y="63" width="220" height="13" />
+    <text class="id" x="130" y="67">ML01 · INPUT MANIPULATION</text>
+    <text class="lbl" x="130" y="105">appended ham-signal</text>
+    <text class="lbl" x="130" y="121">words to spam text</text>
+    <text class="sub" x="130" y="145">spam classifier said</text>
+    <text class="sub" x="130" y="159">"Not Spam" — 1st try</text>
+  </g>
+
+  <!-- card 2: ML02 data poisoning -->
+  <g>
+    <rect class="card" x="260" y="50" width="220" height="120" rx="10" />
+    <rect class="bar" x="260" y="50" width="220" height="26" rx="10" />
+    <rect class="bar" x="260" y="63" width="220" height="13" />
+    <text class="id" x="370" y="67">ML02 · DATA POISONING</text>
+    <text class="lbl" x="370" y="105">flipped every label</text>
+    <text class="lbl" x="370" y="121">in training CSV</text>
+    <text class="sub" x="370" y="145">accuracy: ~95% → 2.8%</text>
+    <text class="sub" x="370" y="159">target was &lt;70%</text>
+  </g>
+
+  <!-- card 3: ML05 model theft -->
+  <g>
+    <rect class="card" x="500" y="50" width="220" height="120" rx="10" />
+    <rect class="bar" x="500" y="50" width="220" height="26" rx="10" />
+    <rect class="bar" x="500" y="63" width="220" height="13" />
+    <text class="id" x="610" y="67">ML05 · MODEL THEFT</text>
+    <text class="lbl" x="610" y="105">found unauthenticated</text>
+    <text class="lbl" x="610" y="121">/model endpoint</text>
+    <text class="sub" x="610" y="145">no ML sophistication —</text>
+    <text class="sub" x="610" y="159">just an exposed file</text>
+  </g>
+
+  <!-- card 4: backdoor attack -->
+  <g>
+    <rect class="card" x="740" y="50" width="220" height="120" rx="10" />
+    <rect class="bar" x="740" y="50" width="220" height="26" rx="10" />
+    <rect class="bar" x="740" y="63" width="220" height="13" />
+    <text class="id" x="850" y="67">SKILLS ASSESSMENT · BACKDOOR</text>
+    <text class="lbl" x="850" y="105">poisoned data so a magic</text>
+    <text class="lbl" x="850" y="121">phrase = guaranteed "ham"</text>
+    <text class="sub" x="850" y="145">accuracy stayed &gt;90% —</text>
+    <text class="sub" x="850" y="159">silent, targeted, passes QA</text>
+  </g>
+</svg>

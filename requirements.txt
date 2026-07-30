@@ -1,0 +1,16 @@
+# Module 2 (spam classifier, network anomaly detection, malware CNN).
+# Modules 3 and 4 are browser/prompt-only labs, no code dependencies.
+#
+# PyTorch installed via pip (not conda) to avoid an MKL conflict — see docs/module2-notes.md.
+numpy<2
+pandas
+scikit-learn
+matplotlib
+seaborn
+nltk
+torch
+torchvision
+torchaudio
+joblib
+split-folders
+jupyterlab

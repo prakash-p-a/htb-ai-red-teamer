@@ -4,7 +4,7 @@ documenting my journey through the HTB AI Red Teamer path (built with google, al
 
 target cert: HTB COAE (Certified Offensive AI Expert)
 
-full technical notes: [docs/learning-notes.md](docs/learning-notes.md)
+**start here:** [docs/architecture.md](docs/architecture.md) — what these four modules actually have in common, not just a list of labs. full technical notes: [docs/](docs/).
 
 ---
 
@@ -25,15 +25,31 @@ full technical notes: [docs/learning-notes.md](docs/learning-notes.md)
 
 ---
 
+## how to run
+
+Module 2 notebooks need a Python 3.11 environment:
+
+```bash
+pip install -r requirements.txt
+jupyter lab
+```
+
+Modules 3 and 4 are prompt/browser-only labs against live HTB targets — no code to run, see their notes instead.
+
+No dataset or model files are committed (`.joblib`, `.pth`, `.csv`, `.zip`, `.txt`, `.json`, and known dataset directories are gitignored) — pull the datasets from the sources linked in each module's notes.
+
+---
+
 ## module 2 — spam classifier
 
 naive bayes classifier on the UCI SMS spam dataset. ~91% accuracy on blind eval.
 
-pipeline: raw sms → lowercase → clean → tokenize → remove stopwords → stem → vectorize → train
+![spam classifier pipeline](docs/diagrams/spam-pipeline.svg)
 
 the red teaming angle: once you know how naive bayes works, you know how to break it. inserting legitimate-looking words shifts the probability score. that's evasion 101.
 
 stack: python 3.11, scikit-learn, nltk, pandas
+[notebook](module2-spam-classifier/spam_classifier.ipynb) · [full notes](docs/module2-notes.md#model-1--spam-classifier)
 
 ---
 
@@ -41,13 +57,16 @@ stack: python 3.11, scikit-learn, nltk, pandas
 
 random forest classifier on NSL-KDD dataset. ~99.76% accuracy on blind eval.
 
-pipeline: raw network logs → binary + multiclass targets → one-hot encode → numeric features → train
+![network anomaly detection pipeline](docs/diagrams/network-anomaly-pipeline.svg)
 
 5 classes: normal, DoS, probe, privilege escalation, access attacks
 
 the red teaming angle: model scores 99%+ on DoS and probe but only catches 24% of privilege escalation attacks. class imbalance = blind spot. an attacker who knows this targets buffer_overflow and rootkit techniques specifically.
 
+<img src="module2-network-anomaly/results/confusion-matrix-test.png" alt="network anomaly detection test set confusion matrix" width="480" />
+
 stack: python 3.11, scikit-learn, seaborn, pandas
+[notebook](module2-network-anomaly/network_anomaly_detection.ipynb) · [full notes](docs/module2-notes.md#model-2--network-anomaly-detection)
 
 ---
 
@@ -55,13 +74,16 @@ stack: python 3.11, scikit-learn, seaborn, pandas
 
 ResNet50 CNN fine-tuned on the malimg dataset. 96.69% accuracy on blind eval.
 
-pipeline: malware binary → byteplot image → resize 75x75 → normalize → ResNet50 (frozen) → custom fc head → train
+![malware classifier byteplot to CNN pipeline](docs/diagrams/malware-pipeline.svg)
 
 25 malware families. pre-trained imagenet weights used. only final layer trained.
 
 the red teaming angle: adversarial image perturbations can fool CNNs. tiny pixel changes invisible to humans can flip classification. that's the foundation for evasion attacks covered in later modules.
 
+<img src="module2-malware-cnn/results/class-distribution.png" alt="malware class distribution" width="440" /> <img src="module2-malware-cnn/results/training-accuracy.png" alt="training accuracy curve" width="440" />
+
 stack: python 3.11, pytorch, torchvision, pillow
+[notebook](module2-malware-cnn/Malware_CNN.ipynb) · [full notes](docs/module2-notes.md#model-3--malware-image-classifier)
 
 ---
 
@@ -69,13 +91,15 @@ stack: python 3.11, pytorch, torchvision, pillow
 
 hands-on labs against live model endpoints. no code artifacts — browser + jupyter one-liners against HTB targets.
 
+![module 3 techniques covered](docs/diagrams/module3-techniques.svg)
+
 what i did:
 - ML01 input manipulation: got a spam classifier to misclassify by appending ham-signal words
 - ML02 data poisoning: flipped all training labels, dropped accuracy from ~95% to 2.8%
 - ML05 model theft: found an unauthenticated `/model` endpoint, downloaded the trained classifier directly
 - backdoor attack (skills assessment): poisoned training data so any spam message ending in a magic phrase gets classified as ham, while keeping overall accuracy above 90%. silent, targeted, passes normal QA checks.
 
-full writeup in the notes doc.
+[full notes](docs/module3-notes.md)
 
 ---
 
@@ -93,7 +117,10 @@ the deep one. direct injection, indirect injection, jailbreaking, and writing de
 
 **skills assessment:** leaked an admin key from a support bot's system prompt, found an admin panel with a chat-review bot, and used indirect injection to get the review bot itself to detect and flag the injection attempt — closing the loop on the assessment.
 
+![module 4 skills assessment attack chain](docs/diagrams/module4-attack-chain.svg)
+
 stack: prompt engineering only, no code. garak mentioned for automated scanning but not run locally.
+[full notes](docs/module4-notes.md)
 
 ---
 
